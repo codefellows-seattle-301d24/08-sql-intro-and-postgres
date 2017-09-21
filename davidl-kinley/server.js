@@ -120,7 +120,7 @@ APP.delete('/articles/:id', function(request, response) {
 });
 
 APP.delete('/articles', function(request, response) {
-  // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
+  // COMMENTed: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   // The following code corresponds to numbers 3, 4 and 5 on the diagram. This is interacting with the truncateTable method on article.js. This is also the D in CRUD.
   CLIENT.query(
     'DELETE FROM articles;'
@@ -133,7 +133,7 @@ APP.delete('/articles', function(request, response) {
   });
 });
 
-// COMMENT: What is this function invocation doing?
+// COMMENTed: What is this function invocation doing?
 // If there isnt already a table setup for the articles, it is setting up a table with the propery column and attributes. Then it runs the function loadArticles.
 loadDB();
 
@@ -145,8 +145,8 @@ APP.listen(PORT, function() {
 //////// ** DATABASE LOADER ** ////////
 ////////////////////////////////////////
 function loadArticles() {
-  // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // The following code all happens in the DB and does not pertain to a number on the diagram. It doesnt interact with any method in the article.js file. 
+  // COMMENTed: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
+  // The following code all happens in the DB and does not pertain to a number on the diagram. It doesnt interact with any method in the article.js file. This is the U in CRUD.
   CLIENT.query('SELECT COUNT(*) FROM articles')
   .then(result => {
     // REVIEW: result.rows is an array of objects that Postgres returns as a response to a query.
@@ -172,7 +172,7 @@ function loadArticles() {
 
 function loadDB() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here...
+  // This corresponds to 3, 4 and 5 in the diagram. This does not interact with any method in article.js. This is only the C in CRUD.
   CLIENT.query(`
     CREATE TABLE IF NOT EXISTS articles (
       article_id SERIAL PRIMARY KEY,
