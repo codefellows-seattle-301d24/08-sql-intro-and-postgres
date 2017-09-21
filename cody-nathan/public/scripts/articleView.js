@@ -112,6 +112,8 @@ articleView.submit = function(event) {
   });
 
   article.insertRecord();
+  $('#new-form')[0].reset();
+  $('#articles').empty();
 }
 
 articleView.initIndexPage = function() {
