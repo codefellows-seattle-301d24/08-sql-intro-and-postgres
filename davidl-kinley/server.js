@@ -42,7 +42,7 @@ APP.get('/new', function(request, response) {
 // REVIEW: Routes for making API calls to use CRUD Operations on our database
 APP.get('/articles', function(request, response) {
   // COMMENTed: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here: Line 46 is querying the database (3), lines 47-48 are retrieving from the database (4), and sending to the browser (5). In article.js, the data we retrieved is used with fetchall, which calls loadall, which makes new articles, and new articles now all use the method keys. This is Reading the data (R in CRUD).
+  // Put your response here: Line 46 is querying the database (3), lines 47-48 are retrieving from the database (4), and sending to the browser (5). Lines 50-53 are sending the response(5) to the client of the result (4) if there was an error. In article.js, the data we retrieved is used with fetchall, which calls loadall, which makes new articles, and new articles now all use the method keys. This is Reading the data (R in CRUD).
   CLIENT.query('SELECT * FROM articles')
   .then(function(result) {
     response.send(result.rows);
@@ -54,7 +54,7 @@ APP.get('/articles', function(request, response) {
 
 APP.post('/articles', function(request, response) {
   // COMMENTed: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here: CLIENT.query is a query (3), which is inserting things into our database, then lines 72-74 are a response (5) which tells the client the result (4) of their post. This interacts with the .insertRecord method in article.js. This is Creating data (C in CRUD).
+  // Put your response here: CLIENT.query is a query (3), which is inserting things into our database, then lines 72-78 are a response (5) which tells the client the result (4) of their post. This interacts with the .insertRecord method in article.js. This is Creating data (C in CRUD).
   CLIENT.query(
     `INSERT INTO
     articles(title, author, "authorUrl", category, "publishedOn", body)
@@ -78,8 +78,8 @@ APP.post('/articles', function(request, response) {
 });
 
 APP.put('/articles/:id', function(request, response) {
-  // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here...
+  // COMMENTed: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
+  // Put your response here: The query is a query (3), then lines 99-105 are the response (5) to the user, of the result (4) of their update. This interacts with the .updateRecord method in article.js. This is an Update, (U in CRUD).
   CLIENT.query(
     `UPDATE articles
     SET
