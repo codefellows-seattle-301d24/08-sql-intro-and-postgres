@@ -20,8 +20,7 @@ const conString = 'postgres://localhost:5432/articles';
 //       This is how it knows the URL and, for Windows and Linux users, our username and password for our
 //       database when client.connect is called on line 26. Thus, we need to pass our conString into our
 //       pg.Client() call.
-const CLIENT = new PG.Client(conString);
-const client = new pg.Client('something needs to go here... read the instructions above!');
+const client = new pg.Client(conString);
 
 // REVIEW: Use the client object to connect to our DB.
 client.connect();
@@ -36,7 +35,7 @@ app.use(express.static('./public'));
 // REVIEW: Routes for requesting HTML resources
 app.get('/new', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here...
+  // Numbers 4 and 5 correspond to the following line of code.
   response.sendFile('new.html', {root: './public'});
 });
 
