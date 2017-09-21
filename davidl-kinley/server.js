@@ -9,13 +9,13 @@ const BODYPARSER = require('body-parser');
 const PORT = process.env.PORT || 3000;
 const APP = EXPRESS();
 
-// TODO: Complete the connection string for the url that will connect to your local postgres database
+// DONE: Complete the connection string for the url that will connect to your local postgres database
 // Windows and Linux users; You should have retained the user/pw from the pre-work for this course.
 // Your url may require that it's composed of additional information including user and password
 // const conString = 'postgres://USER:PASSWORD@HOST:PORT/DBNAME';
 const CONSTRING = process.env.DATABASE_URL;
 
-// TODO: Our pg module has a Client constructor that accepts one argument: the conString we just defined.
+// DONE: Our pg module has a Client constructor that accepts one argument: the conString we just defined.
 //       This is how it knows the URL and, for Windows and Linux users, our username and password for our
 //       database when CLIENT.connect is called on line 26. Thus, we need to pass our conString into our
 //       pg.Client() call.
@@ -33,16 +33,16 @@ APP.use(EXPRESS.static('./public'));
 
 // REVIEW: Routes for requesting HTML resources
 APP.get('/new', function(request, response) {
-  // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here:
+  // COMMENTed: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
+  // Put your response here: the above requests the server for new.html which is being sent with sendfile as the response, which is #5 on the diagram. There is nothing here interacting with article.js. We are Reading (the R in CRUD) new.html.
   response.sendFile('new.html', {root: './public'});
 });
 
 
 // REVIEW: Routes for making API calls to use CRUD Operations on our database
 APP.get('/articles', function(request, response) {
-  // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here...
+  // COMMENTed: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
+  // Put your response here: Line 46 is querying the database (3), lines 47-48 are retrieving from the database (4), and sending to the browser (5). In article.js, the data we retrieved is used with fetchall, which calls loadall, which makes new articles, and new articles now all use the method keys. This is Reading the data (R in CRUD).
   CLIENT.query('SELECT * FROM articles')
   .then(function(result) {
     response.send(result.rows);
@@ -53,8 +53,8 @@ APP.get('/articles', function(request, response) {
 });
 
 APP.post('/articles', function(request, response) {
-  // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here...
+  // COMMENTed: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
+  // Put your response here: CLIENT.query is a query (3), which is inserting things into our database, then lines 72-74 are a response (5) which tells the client the result (4) of their post. This interacts with the .insertRecord method in article.js. This is Creating data (C in CRUD).
   CLIENT.query(
     `INSERT INTO
     articles(title, author, "authorUrl", category, "publishedOn", body)
