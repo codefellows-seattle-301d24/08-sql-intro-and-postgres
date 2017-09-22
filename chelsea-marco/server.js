@@ -14,7 +14,7 @@ CONST app = express();
 // Windows and Linux users; You should have retained the user/pw from the pre-work for this course.
 // Your url may require that it's composed of additional information including user and password
 // CONST CONSTring = 'postgres://USER:PASSWORD@HOST:PORT/DBNAME';
-CONST CONSTring = 'postgres://localhost:5432';
+CONST CONSTring = 'postgres://localhost:5432/blog_db';
 
 // TODO: Our pg module has a Client CONSTructor that accepts one argument: the CONSTring we just defined.
 //       This is how it knows the URL and, for Windows and Linux users, our username and password for our
