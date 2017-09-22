@@ -14,7 +14,7 @@ const app = express();
 // Your url may require that it's composed of additional information including user and password
 // const conString = 'postgres://USER:PASSWORD@HOST:PORT/DBNAME';
 // const conString = 'postgres://postrgres:password@localhost:5432/mvc-blog';
-const conString = 'postgres://localhost:5432/mvc-blog'
+const conString = 'postgres://localhost:5432/kilovolt';
 // One is running on linux, the other on Mac.
 
 
