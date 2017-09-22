@@ -68,7 +68,7 @@ app.get('/articles', function(request, response) {
 app.post('/articles', function(request, response) {
   // DONE: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   // Put your response here...
-  // ANSWER: This responds to #3 in the CRUD diagram. "insertReceord" is the method being intereacted with. The CREATE portion is the one being enacted here.
+  // ANSWER: This responds to #3 in the full-stack-diagram.png. "insertRecord" is the method being intereacted with. The CREATE portion is the one being enacted here.
   client.query(
     `INSERT INTO
     articles(title, author, "authorUrl", category, "publishedOn", body)
@@ -92,9 +92,9 @@ app.post('/articles', function(request, response) {
 });
 
 app.put('/articles/:id', function(request, response) {
-  // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
+  // DONE: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   // Put your response here...
-  // ANSWER: This responds to #3 in the CRUD diagram. "insertReceord" is the method being intereacted with. The CREATE portion is the one being enacted here.
+  // ANSWER: This responds to #3 & 4 in the full-stack-diagram.png. "updateRecord" is the method being intereacted with. The UPDATE portion is the one being enacted here.
   client.query(
     `UPDATE articles
     SET
@@ -120,8 +120,9 @@ app.put('/articles/:id', function(request, response) {
 });
 
 app.delete('/articles/:id', function(request, response) {
-  // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
+  // DONE: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   // Put your response here...
+  // ANSWER: This responds to #3 and 4 in the full-stack-diagram.png. "deleteRecord" is the method being intereacted with. The DELETE portion is the one being enacted here.
   client.query(
     `DELETE FROM articles WHERE article_id=$1;`,
     [request.params.id]
@@ -135,8 +136,9 @@ app.delete('/articles/:id', function(request, response) {
 });
 
 app.delete('/articles', function(request, response) {
-  // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
+  // DONE: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   // Put your response here...
+  // ANSWER: This responds to #3 & 4 in the full-stack-diagram.png. "deleteRecord" is the method being intereacted with. The DELETE portion is the one being enacted here.
   client.query(
     'DELETE FROM articles;'
   )
@@ -148,10 +150,10 @@ app.delete('/articles', function(request, response) {
   });
 });
 
-// COMMENT: What is this function invocation doing?
+// DONE: What is this function invocation doing?
 // Put your response here...
+// ANSWER: It creates a table which sets up variables by type. Establishs the length of vaiables and declares a primary key.
 loadDB();
-
 app.listen(PORT, function() {
   console.log(`Server started on port ${PORT}!`);
 });
@@ -162,6 +164,7 @@ app.listen(PORT, function() {
 function loadArticles() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   // Put your response here...
+// ANSWER: This responds to #5 in the full-stack-diagram.png. "fetchALl" is the method being intereacted with. The CREATE portion is the one being enacted here.
   client.query('SELECT COUNT(*) FROM articles')
   .then(result => {
     // REVIEW: result.rows is an array of objects that Postgres returns as a response to a query.
@@ -188,6 +191,7 @@ function loadArticles() {
 function loadDB() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   // Put your response here...
+  // ANSWER: This responds to #1 in the full-stack-diagram.png. "loadALl" is the method being intereacted with. The CREATE portion is the one being enacted here.
   client.query(`
     CREATE TABLE IF NOT EXISTS articles (
       article_id SERIAL PRIMARY KEY,
