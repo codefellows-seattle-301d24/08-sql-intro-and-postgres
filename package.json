@@ -1,0 +1,23 @@
+{
+  "name": "lab08",
+  "version": "1.0.0",
+  "description": "![CF](https://i.imgur.com/7v5ASc8.png)  Lab 08: SQL and Postgres ======= [Code of Conduct](https://github.com/codefellows/code-of-conduct)",
+  "main": "server.js",
+  "dependencies": {
+    "pg": "^7.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chelseadole/08-sql-intro-and-postgres.git"
+  },
+  "author": "Chelsea and Marco",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chelseadole/08-sql-intro-and-postgres/issues"
+  },
+  "homepage": "https://github.com/chelseadole/08-sql-intro-and-postgres#readme"
+}
