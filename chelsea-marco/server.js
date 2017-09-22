@@ -43,7 +43,7 @@ app.get('/new', function(request, response) {
 // REVIEW: Routes for making API calls to use CRUD Operations on our database
 app.get('/articles', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // 3 and 4 are enacted here. It corresponds with .fetchAll() in article.js. It sends a query to the DB through the client.query section, then gets a response — which it sends to me (or tells your console you have an error). This is a get request, so "R"
+  // 3 and 4 and 5 are enacted here. It corresponds with .fetchAll() in article.js. It sends a query to the DB through the client.query section, then gets a response — which it sends to me (or tells your console you have an error). This is a get request, so "R"
   client.query('SELECT * FROM articles')
   .then(function(result) {
     response.send(result.rows);
@@ -80,7 +80,7 @@ app.post('/articles', function(request, response) {
 
 app.put('/articles/:id', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // This is 3 and 4 of the diagram again, for the same reasons as the last question. This interacts with .updateRecord(). Because you are making changes to the DB via an SQL query, then getting a confirmation from the DB. It is "U" of CRUD, because it is an update.
+  // This is 3 and 4 and 5 of the diagram again, for the same reasons as the last question. This interacts with .updateRecord(). Because you are making changes to the DB via an SQL query, then getting a confirmation from the DB. It is "U" of CRUD, because it is an update.
   client.query(
     `UPDATE articles
     SET
@@ -173,7 +173,7 @@ function loadArticles() {
 
 function loadDB() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // This is part 3 and 4, 'C' of CRUD. 
+  // This is part 3 and 4, 'C' of CRUD.
   client.query(`
     CREATE TABLE IF NOT EXISTS articles (
       article_id SERIAL PRIMARY KEY,
