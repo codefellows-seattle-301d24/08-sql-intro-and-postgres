@@ -43,7 +43,7 @@ app.get('/new', function(request, response) {
 // REVIEW: Routes for making API calls to use CRUD Operations on our database
 app.get('/articles', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here... This line of code uses numbers 3 (query) by virtue of being a query to the model portion of the diagram. It also uses number 4, because the purpose of this block of code is to generate the result and send it back to the front end. This line interacts with lines 45 through 54 in article.js (the fetchAll method). The portion of CRUD that this is is READ, because it's a get request.
+  // Put your response here... This line of code uses numbers 3 (query) by virtue of being a query to the model portion of the diagram. It also uses number 4, because the purpose of this block of code is to generate the result and send it back to the front end It also uses 5 because it sends the response back to the user.. This line interacts with lines 45 through 54 in article.js (the fetchAll method). The portion of CRUD that this is is READ, because it's a get request.
   client.query('SELECT * FROM articles')
     .then(function(result) {
       response.send(result.rows);
@@ -55,7 +55,7 @@ app.get('/articles', function(request, response) {
 
 app.post('/articles', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here...
+  // Put your response here... This corresponds to 3 and 4 and 5, query and result on the MVC diagram. The method of article.js that is being called is Article.prototype.insertRecord(). This is the place in article.js that make a post request on the /article URL. From CRUD, this seems like CREATE because it INSERT's INTO, which suggests that new information is being written to the back end, rather than updated, however, the table already exists and is being augmented by this action, so one could also argue that this is UPDATING.
   client.query(
     `INSERT INTO
     articles(title, author, "authorUrl", category, "publishedOn", body)
@@ -80,7 +80,7 @@ app.post('/articles', function(request, response) {
 
 app.put('/articles/:id', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here...
+  // Put your response here...This corresponds to 3 and 4 and 5 in the diagram. The method in article.js it corresponds to is Article.prototype.updateRecord(). The portion of CRUD that this corresponds to is UPDATE.
   client.query(
     `UPDATE articles
     SET
@@ -107,7 +107,7 @@ app.put('/articles/:id', function(request, response) {
 
 app.delete('/articles/:id', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here...
+  // Put your response here... 3, 4, and 5, as above. The method it works with is Article.prototype.deleteRecord(). This CRUD is DELETE CRUD.
   client.query(
     `DELETE FROM articles WHERE article_id=$1;`,
     [request.params.id]
@@ -122,7 +122,7 @@ app.delete('/articles/:id', function(request, response) {
 
 app.delete('/articles', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here...
+  // Put your response here... 3, 4 and 5 from the diagram. The method it works with is Article.truncateTable(). This CRUD is DELETE CRUD flavor.
   client.query(
     'DELETE FROM articles;'
   )
@@ -135,7 +135,7 @@ app.delete('/articles', function(request, response) {
 });
 
 // COMMENT: What is this function invocation doing?
-// Put your response here...
+// Put your response here... This creates the articles table if it doesn't already exist.
 loadDB();
 
 app.listen(PORT, function() {
@@ -147,7 +147,7 @@ app.listen(PORT, function() {
 ////////////////////////////////////////
 function loadArticles() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here...
+  // Put your response here... This uses 3 and 4 because it's a query that receives a result. It does not interact directly with any methods from article.js. This CRUD is UPDATE CRUD.
   client.query('SELECT COUNT(*) FROM articles')
     .then(result => {
     // REVIEW: result.rows is an array of objects that Postgres returns as a response to a query.
@@ -173,7 +173,7 @@ function loadArticles() {
 
 function loadDB() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here...
+  // Put your response here...The portion of the diagram this one interacts with is 3. It makes the table. If you count the calling of loadArticles in the .then method, you could also say it involves diagram item 4. This function does not directly interact with any methods in article.js. This CRUD is CREATE CRUD.
   client.query(`
     CREATE TABLE IF NOT EXISTS articles (
       article_id SERIAL PRIMARY KEY,
