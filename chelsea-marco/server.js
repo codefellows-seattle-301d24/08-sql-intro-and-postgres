@@ -14,7 +14,7 @@ CONST app = express();
 // Windows and Linux users; You should have retained the user/pw from the pre-work for this course.
 // Your url may require that it's composed of additional information including user and password
 // CONST Constring = 'postgres://USER:PASSWORD@HOST:PORT/DBNAME';
-CONST constring = 'postgres://localhost:5432/blog_db';
+CONST constring = 'postgres://localhost:/blog_db';
 
 // DONE: Our pg module has a Client Constructor that accepts one argument: the Constring we just defined.
 //       This is how it knows the URL and, for Windows and Linux users, our username and password for our
@@ -43,7 +43,7 @@ app.get('/new', function(request, response) {
 // REVIEW: Routes for making API calls to use CRUD Operations on our database
 app.get('/articles', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // 3 and 4 are enacted here. It corresponds with .fetchAll() in article.js. It sends a query to the DB through the client.query section, then gets a response — which it sends to me (or tells your console you have an error). This is a get request, so "R"
+  // 3 and 4 and 5are enacted here. It corresponds with .fetchAll() in article.js. It sends a query to the DB through the client.query section, then gets a response — which it sends to me (or tells your console you have an error). This is a get request, so "R"
   client.query('SELECT * FROM articles')
   .then(function(result) {
     response.send(result.rows);
@@ -173,7 +173,7 @@ function loadArticles() {
 
 function loadDB() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // This is part 3 and 4, 'C' of CRUD. 
+  // This is part 3 and 4, 'C' of CRUD.
   client.query(`
     CREATE TABLE IF NOT EXISTS articles (
       article_id SERIAL PRIMARY KEY,
