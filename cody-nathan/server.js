@@ -35,7 +35,7 @@ app.use(express.static('./public'));
 // REVIEW: Routes for requesting HTML resources
 app.get('/new', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here...
+  // Put your response here... This function receives number 2 in the diagram, and generates number 5 in the diagram. No methods of article.js interact with this function because none of the methods in article.js make a get request on the /new url. From CRUD, this is READ.
   response.sendFile('new.html', {root: './public'});
 });
 
@@ -43,7 +43,7 @@ app.get('/new', function(request, response) {
 // REVIEW: Routes for making API calls to use CRUD Operations on our database
 app.get('/articles', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here...
+  // Put your response here... This line of code uses numbers 3 (query) by virtue of being a query to the model portion of the diagram. It also uses number 4, because the purpose of this block of code is to generate the result and send it back to the front end. This line interacts with lines 45 through 54 in article.js (the fetchAll method). The portion of CRUD that this is is READ, because it's a get request.
   client.query('SELECT * FROM articles')
     .then(function(result) {
       response.send(result.rows);
