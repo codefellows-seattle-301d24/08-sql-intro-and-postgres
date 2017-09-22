@@ -1,4 +1,4 @@
-'use strict';
+ 'use strict';
 
 function Article (rawDataObj) {
   /* REVIEW: This is a new construct to save all the properties of rawDataObj into our newly
