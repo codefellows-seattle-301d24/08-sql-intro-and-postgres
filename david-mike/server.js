@@ -1,6 +1,7 @@
 'use strict';
 
 // TODO: Install and require the NPM Postgres package 'pg' into your server.js, and ensure that it is then listed as a dependency in your package.json
+const pg = require('pg');
 const fs = require('fs');
 const express = require('express');
 
@@ -13,14 +14,13 @@ const app = express();
 // Windows and Linux users; You should have retained the user/pw from the pre-work for this course.
 // Your url may require that it's composed of additional information including user and password
 // const conString = 'postgres://USER:PASSWORD@HOST:PORT/DBNAME';
-const conString = 'postgres://localhost:5432';
+const conString = process.env.DATABASE_URL || 'postgres://localhost:5432';
 
 // TODO: Our pg module has a Client constructor that accepts one argument: the conString we just defined.
 //       This is how it knows the URL and, for Windows and Linux users, our username and password for our
 //       database when client.connect is called on line 26. Thus, we need to pass our conString into our
 //       pg.Client() call.
-const client = new pg.Client('something needs to go here... read the instructions above!');
-
+const client = new pg.Client(conString);
 // REVIEW: Use the client object to connect to our DB.
 client.connect();
 
@@ -35,6 +35,11 @@ app.use(express.static('./public'));
 app.get('/new', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   // Put your response here...
+  /**
+    ANSWER: This line of code corresponds to #5 in the Full-Stack Diagram.
+    This is a response sent to the view. The main page [the view] is 'created' [CRUD]
+    by the The method prototype is .toHTML() [from article.js] .
+  */
   response.sendFile('new.html', {root: './public'});
 });
 
@@ -43,6 +48,14 @@ app.get('/new', function(request, response) {
 app.get('/articles', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   // Put your response here...
+
+  /*
+  ANSWER: This corresponds to #3 Query, from the Full-Stack Diagram.
+  The SELECT statement corresponds to the Read phase in CRUD.
+  This calls the fetchAll method from Article.js
+
+  */
+
   client.query('SELECT * FROM articles')
   .then(function(result) {
     response.send(result.rows);
