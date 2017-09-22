@@ -37,8 +37,8 @@ app.get('/new', function(request, response) {
   // Put your response here...
   /**
     ANSWER: This line of code corresponds to #5 in the Full-Stack Diagram.
-    This is a response sent to the view. The main page [the view] is 'created' [CRUD]
-    by the The method prototype is .toHTML() [from article.js] .
+    This is a response sent to the view. The main page [the view] is 'read' [CRUD].
+    There appears to be no method type.
   */
   response.sendFile('new.html', {root: './public'});
 });
@@ -138,7 +138,7 @@ app.delete('/articles/:id', function(request, response) {
 app.delete('/articles', function(request, response) {
   // DONE: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   // Put your response here...
-  // ANSWER: This responds to #3 & 4 in the full-stack-diagram.png. "deleteRecord" is the method being intereacted with. The DELETE portion is the one being enacted here.
+  // ANSWER: This responds to #3 & 4 in the full-stack-diagram.png. "truncateTable" is the method being intereacted with. The DELETE portion is the one being enacted here.
   client.query(
     'DELETE FROM articles;'
   )
@@ -164,7 +164,7 @@ app.listen(PORT, function() {
 function loadArticles() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   // Put your response here...
-// ANSWER: This responds to #5 in the full-stack-diagram.png. "fetchALl" is the method being intereacted with. The CREATE portion is the one being enacted here.
+// ANSWER: This responds to #3 in the full-stack-diagram.png. "loadAll" is the method being intereacted with. The CREATE portion is the one being enacted here.
   client.query('SELECT COUNT(*) FROM articles')
   .then(result => {
     // REVIEW: result.rows is an array of objects that Postgres returns as a response to a query.
@@ -191,7 +191,7 @@ function loadArticles() {
 function loadDB() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   // Put your response here...
-  // ANSWER: This responds to #1 in the full-stack-diagram.png. "loadALl" is the method being intereacted with. The CREATE portion is the one being enacted here.
+  // ANSWER: This responds to #4 in the full-stack-diagram.png. "fetchall" is the method being intereacted with. The CREATE portion is the one being enacted here.
   client.query(`
     CREATE TABLE IF NOT EXISTS articles (
       article_id SERIAL PRIMARY KEY,
