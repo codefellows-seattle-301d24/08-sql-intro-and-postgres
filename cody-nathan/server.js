@@ -147,7 +147,7 @@ app.listen(PORT, function() {
 ////////////////////////////////////////
 function loadArticles() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here... This uses 3 and 4 because it's a query that receives a result. It does not interact directly with any methods from article.js. This CRUD is UPDATE CRUD.
+  // Put your response here... This uses 3 and 4 because it's a query that receives a result. It does not interact directly with any methods from article.js. This CRUD isn't a REAL CRUD but if we were going to define it as one it would be some READ CRUD.
   client.query('SELECT COUNT(*) FROM articles')
     .then(result => {
     // REVIEW: result.rows is an array of objects that Postgres returns as a response to a query.
