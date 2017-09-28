@@ -36,7 +36,7 @@ app.use(express.static('./public'));
 // REVIEW: Routes for requesting HTML resources
 app.get('/new', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here... 1) number 5.  2) Article.prototype.insertRecord() ) 3) R - it is reading data from the database.
+  // Put your response here... 1) number 5.  2) none ) 3) R - it is reading data from the database.
   response.sendFile('new.html', {root: './public'});
 });
 
@@ -108,7 +108,7 @@ app.put('/articles/:id', function(request, response) {
 
 app.delete('/articles/:id', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here... 1)3,4,5; 2)Article.prototype.updateRecord(); 3) Delete
+  // Put your response here... 1)3,4,5; 2)Article.prototype.deleteRecord(); 3) Delete
   client.query(
     `DELETE FROM articles WHERE article_id=$1;`,
     [request.params.id]
@@ -123,7 +123,7 @@ app.delete('/articles/:id', function(request, response) {
 
 app.delete('/articles', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here... 3,4,5. The article is interacting with Article.prototype.deleteRecord. This is apart of the Delete method of CRUD.
+  // Put your response here... 3,4,5. The article is interacting with Article.truncateTable() . This is apart of the Delete method of CRUD.
   client.query(
     'DELETE FROM articles;'
   )
@@ -136,7 +136,7 @@ app.delete('/articles', function(request, response) {
 });
 
 // COMMENT: What is this function invocation doing?
-// Put your response here... loadDB() is going to create the database and input all the data that you put into it.
+// Put your response here... loadDB() is going to create the article table within the database and input all the data that you put into it.
 loadDB();
 
 app.listen(PORT, function() {
@@ -174,7 +174,7 @@ function loadArticles() {
 
 function loadDB() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here... 3, 4, 5. loadDB is interacting with the loadArticles function in article.js. This is the Create part of CRUD.
+  // Put your response here... 3, 4, 5. loadDB is interacting with the loadArticles function in article.js, although it is not called by loadArticles, it is actually just called within the server.js file @line 140. This is the Create part of CRUD.
   client.query(`
     CREATE TABLE IF NOT EXISTS articles (
       article_id SERIAL PRIMARY KEY,
