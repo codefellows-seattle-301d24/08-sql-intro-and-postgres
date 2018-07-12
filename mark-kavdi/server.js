@@ -14,7 +14,7 @@ const app = express();
 // Windows and Linux users; You should have retained the user/pw from the pre-work for this course.
 // Your url may require that it's composed of additional information including user and password
 // const conString = 'postgres://USER:PASSWORD@HOST:PORT/DBNAME';
-const conString = 'postgres://localhost:5432/articles';
+const conString = 'postgres://localhost:5432/kilovolt';
 
 // DONE: Our pg module has a Client constructor that accepts one argument: the conString we just defined.
 //       This is how it knows the URL and, for Windows and Linux users, our username and password for our
@@ -35,7 +35,7 @@ app.use(express.static('./public'));
 // REVIEW: Routes for requesting HTML resources
 app.get('/new', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // DONE: Numbers 4 and 5 correspond to the following line of code.
+  // DONE: Numbers 4 and 5 correspond to the following line of code, which is not interacting with article.js, it is a result of defining the url path in the browser for a user (or it could be done from node if it was not a user seeking to use the /new path). This is part of Read in CRUD.
   response.sendFile('new.html', {root: './public'});
 });
 
@@ -43,7 +43,7 @@ app.get('/new', function(request, response) {
 // REVIEW: Routes for making API calls to use CRUD Operations on our database
 app.get('/articles', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // DONE: 2, 3, 4, and 5 are used in this get request which is interacting with the fetchAll method in article.js as part of the Read cycle of CRUD.
+  // DONE: 3, 4, and 5 are used in this get request which is interacting with the fetchAll method in article.js as part of the Read cycle of CRUD.
   client.query('SELECT * FROM articles')
   .then(function(result) {
     response.send(result.rows);
@@ -55,7 +55,7 @@ app.get('/articles', function(request, response) {
 
 app.post('/articles', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // DONE: 2, 3, 4, and 5 are used in this post request, which is interacting with the Articles.insertRecord method in article.js as part of the Update cycle of CRUD.
+  // DONE: 2, 3, 4, and 5 are used in this post request, which is interacting with the Articles.insertRecord method in article.js as part of the Create cycle of CRUD.
   client.query(
     `INSERT INTO
     articles(title, author, "authorUrl", category, "publishedOn", body)
@@ -147,7 +147,7 @@ app.listen(PORT, function() {
 ////////////////////////////////////////
 function loadArticles() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // DONE: 3 is used in this query, which is not interacting with any methods in article.js. It is part of the Update cycle of CRUD.
+  // DONE: 3 is used in this query, which is not interacting with any methods in article.js. It is part of the Create cycle of CRUD.
   client.query('SELECT COUNT(*) FROM articles')
   .then(result => {
     // REVIEW: result.rows is an array of objects that Postgres returns as a response to a query.
@@ -173,7 +173,7 @@ function loadArticles() {
 
 function loadDB() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // DONE: 3 is used in this query, which is not interacting with any methods in article.js. It is part of the Update cycle of CRUD.
+  // DONE: 3 is used in this query, which is not interacting with any methods in article.js. It is part of the Create cycle of CRUD depending on if the table exists.
   client.query(`
     CREATE TABLE IF NOT EXISTS articles (
       article_id SERIAL PRIMARY KEY,
