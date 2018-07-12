@@ -118,7 +118,7 @@ app.put('/articles/:id', function(request, response) {
 
 app.delete('/articles/:id', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here... 3, 4, 5, delete record function, d in crud, delete.
+  // Put your response here... 3, 4, 5, the method of article.js that interacts with theis piece of server.js is article.prototype.deleteRecord. This delete a specific article based on a given id from the delete request, d in crud, delete.
 
   client.query(
     `DELETE FROM articles WHERE article_id=$1;`,
@@ -134,7 +134,7 @@ app.delete('/articles/:id', function(request, response) {
 
 app.delete('/articles', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here... 3, 4, 5, delete record, d in crud
+  // Put your response here... 3, 4, 5, the method of article.js that interacts with theis piece of server.js is article.truncate table. This deletes everything article from the table d in crud
 
   client.query(
     'DELETE FROM articles;'
@@ -148,7 +148,7 @@ app.delete('/articles', function(request, response) {
 });
 
 // COMMENT: What is this function invocation doing?
-// Put your response here... this loads the database, and then later populated by loadArticles function.
+// Put your response here... this creates the articles table if it doesn't already exist, then it calls the load articles function which creates all of the articles as rows in the table if they are not already defined
 loadDB();
 
 app.listen(PORT, function() {
